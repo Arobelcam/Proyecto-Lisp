@@ -1,7 +1,16 @@
 package com.example;
 
-import com.example.models.Programa;
+/**
+ * Universidad Del Valle de Guatemala
+ * @author Aaron Beltrán 21092
+ * @author Raul Sanchez 21401
+ * @author Roberto Rios 20979
+ * @author Luis Montenegro  21699
+ * Clase principal
+ * Fecha de realización
+ */
 
+import com.example.models.Programa;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,17 +19,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-/*
-Aaron Beltran 21092
-Raul Sanchez 18212
-Roberto Rios 18049
-Luis Montenegro Lisp
- */
 
-
-/**
- * Clase principal
- */
 public class Main {
     public static void main(String[] args) throws Exception {
         //Para leer el archivo
