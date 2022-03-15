@@ -1,24 +1,36 @@
 package com.example.models;
 
+/**
+ * StackInt
+ * Objetivo: Definicion de interfaz 
+ * 
+ * @author Aaron Beltran
+ * @author Paulo Sánchez
+  * @author Luis Montenegro
+ * @author Roberto Rios
+ * @version 1.0 finalizado 14/03/2022
+ */
 public interface StackInt<E> {
-
+    /**
+     * 
+     * @param <E> generico
+     */
     void push(E item);
     // pre:
-    // post: item is added to stack
-    // will be popped next if no intervening push
+    // post: se añade el item al stack
+    // se aplicara pop si no se utiliza push
 
     E pop();
-    // pre: stack is not empty
-    // post: most recently pushed item is removed and returned
+    // pre: el stack no esta vacio
+    // post: el item más reciente es borrado y se regresa el valor
 
     E peek();
-    // pre: stack is not empty
-    // post: top value (next to be popped) is returned
+    // pre: el stack no esta vacio
+    // post: El valor que esta más proximo a que se le aplique el pop se obtiene
 
     boolean empty();
-    // post: returns true if and only if the stack is empty
+    // post: se obtiene true si el stack está vacío
 
     int size();
-    // post: returns the number of elements in the stack
-
+    // post: se obtiene el numero de elementos disponibles en stack
 }

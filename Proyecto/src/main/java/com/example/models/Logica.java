@@ -1,3 +1,5 @@
+package com.example.models;
+
 /**
  * Logica
  * Objetivo: Establecer logica para leer el archivo lisp
@@ -24,7 +26,7 @@ public Logica(){
  * Se añade una instruccion a los arraylist
  * @param commands
  */
-public void adCommand(String commands){
+public void addCommand(String commands){
     this.lines.add(commands);
 }
 /**
@@ -38,7 +40,7 @@ public ArrayList<String> getLines(){
  * String para almacenamiento de todas las lineas
  * @param logica
  */
-public String string(){
+public String generadorString(){
     String logica="";
     for (String lines: lines){
         logica+= lines;

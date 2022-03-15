@@ -1,72 +1,61 @@
 package com.example.models;
 
+/**
+ * StackVector
+ * Objetivo: Implementaccion final de Stack
+ * 
+ * @author Aaron Beltran
+ * @author Paulo Sánchez
+ * @author Luis Montenegro
+ * @author Roberto Rios
+ * @version 1.0 finalizado 22/02/2022
+ */
 import java.util.Vector;
-
-public class StackVector<E> extends StackAC<E> {
-
-    private Vector<E> vector;
-
-    public StackVector() {
-        vector = new Vector<>();
-    }
-
-    public StackVector(int i) {
-        this.vector = new Vector<>(i);
-    }
-
-    public Vector<E> getVector() {
-        return this.vector;
-    }
-
-    /**
-     * pop si no se encuentra un push
-     * @param item elemento
-     */
+public class StackVector<E> extends StackAbstract<E>{
+private Vector<E> vec;
+//Metodos vector
+public StackVector(){
+    vec= new Vector<>();
+}
+public StackVector(int i){
+    this.vec= new Vector<>(i);
+}
+public Vector <E> getVector() {
+    return this.vec;
+}
     @Override
     public void push(E item) {
-        //Will be popped next if no intervening push
-        vector.add(item);
+        // pre:
+    // post: se añade el item al stack
+    // se aplicara pop si no se utiliza push
+    vec.add(item);   
     }
-
-    /**
-     * EL elemento con push es eliminado
-     * @return vector elimina
-     */
 
     @Override
     public E pop() {
-        //Most recently pushed item is removed and returned
-        return vector.remove(size() -1);
+           // pre: el stack no esta vacio
+    // post: el item más reciente es borrado y se regresa el valor 
+        return vec.remove(size()-1);
     }
 
-    /**
-     * el valor es retornado
-     * @return vectornpop
-     */
     @Override
     public E peek() {
-        //Top value (next to be popped) is returned
-        return vector.get(size() -1);
+    // pre: el stack no esta vacio
+    // post: El valor que esta más proximo a que se le aplique el pop se obtiene
+        return vec.get(size()-1);
     }
 
-    /**
-     * Valida si el stack esta vacio o no
-     * @return true/false
-     */
     @Override
     public boolean empty() {
-        //Returns true if and only if the stack is empty
-        return vector.isEmpty();
+    // post: se obtiene true si el stack está vacío
+        return vec.isEmpty();
     }
 
-    /**
-     * Retorna la cantidad de elementos en el stack
-     * @return tamanio
-     */
     @Override
     public int size() {
-        //Returns the number of elements in the stack
-        return vector.size();
+        // post: se obtiene el numero de elementos disponibles en stack
+        return vec.size();
     }
-
+    
 }
+ 

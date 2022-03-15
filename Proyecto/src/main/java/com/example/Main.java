@@ -10,7 +10,6 @@ package com.example;
  * Fecha de realización
  */
 
-import com.example.models.Programa;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -18,6 +17,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
+
+import com.example.models.Logica;
 
 
 public class Main {
@@ -37,7 +38,7 @@ public class Main {
             System.out.println("Ha ocurrido un error, archivo no encontrado");
         }
 
-        Programa programa = new Programa(archivo);
-        InterpreteLISP interprete = new InterpreteLISP(programa);
+        Logica logica = new Logica(archivo);
+        LISP interprete = new LISP(logica);
     }
 }

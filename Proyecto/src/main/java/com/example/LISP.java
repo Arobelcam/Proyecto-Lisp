@@ -1,8 +1,7 @@
 package com.example;
 
-import com.example.models.Programa;
+import com.example.models.Logica;
 import com.example.models.StackVector;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,17 +9,17 @@ import java.util.List;
 /**
  * Toda la logica para interpretar un lisp
  */
-public class InterpreteLISP {
+public class LISP {
 
-    private Programa programaSucio;
+    private Logica programaprueba;
     private HashMap<String, StackVector> funciones = new HashMap<>();
 
     /**
      * Constructor
      * @param programaLeido programa ingresado
      */
-    InterpreteLISP(Programa programaLeido) {
-        this.programaSucio = programaLeido;
+    LISP(Logica programaLeido) {
+        this.programaprueba = programaLeido;
         interpretar();
     }
 
@@ -37,11 +36,11 @@ public class InterpreteLISP {
      */
     private StackVector<Object> limpiarPrograma() {
         StackVector<Object> stack = new StackVector<>();
-        Programa programa = new Programa();
+        Logica log = new Logica();
         String programaClean;
 
-        programa.addInstruccion("(");
-        for (String linea : this.programaSucio.getLineas()) {
+        log.addCommand("(");
+        for (String linea : this.programaprueba.getLines()) {
             //Se borran los comentarios
             if (linea.length() >= 1 && linea.charAt(0) != ';') {
                 String nuevalinea = "";
@@ -53,13 +52,13 @@ public class InterpreteLISP {
                     }
                 }
                 //Instrucciones sin comentarios
-                programa.addInstruccion(nuevalinea);
+                log.addCommand(nuevalinea);
             }
         }
-        programa.addInstruccion(")");
+        log.addCommand(")");
 
         //Linea de codigo que coloca un espacion entre parentesis para no tomarlo como una palabra
-        programaClean = programa.stringCreator().replaceAll("\\("," ( ").replaceAll("\\)", " ) ");
+        programaClean = log.generadorString().replaceAll("\\("," ( ").replaceAll("\\)", " ) ");
 
         for (String linea : programaClean.trim().split("\\s+")) {
             stack.push(linea);
