@@ -7,7 +7,7 @@ package com.example;
  * @author Roberto Rios 20979
  * @author Luis Montenegro  21699
  * Clase principal
- * Fecha de realización
+ * Fecha de finalizacion 22/03/2022
  */
 
 import java.io.IOException;
@@ -23,10 +23,12 @@ import com.example.models.Logica;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        //Para leer el archivo
+        //Se pide al usuario que ingrese el nombre de un archivo.lisp para poder realizar la lectura linea por linea
         Scanner read = new Scanner(System.in);
         System.out.println("Ingrese el nombre del archivo Lisp:");
         String nombreArchivo = read.next();
+
+        //Se convierten los elementos del archivo.lisp en elementos de un arraylist
         ArrayList<String> archivo = new ArrayList<>();
         try {
             Stream<String> lines = Files.lines(
@@ -38,6 +40,7 @@ public class Main {
             System.out.println("Ha ocurrido un error, archivo no encontrado");
         }
 
+        //Se realiza la instancia de las clases logica y el interprete de lisp para poder cumplir con el modelo vista controlador
         Logica logica = new Logica(archivo);
         LISP interprete = new LISP(logica);
     }

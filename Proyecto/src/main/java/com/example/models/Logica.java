@@ -8,7 +8,7 @@ package com.example.models;
  * @author Paulo Sánchez
  * @author Luis Montenegro
  * @author Roberto Rios
- * @version 1.0 finalizado 22/02/2022
+ * @version 1.0 finalizado 14/03/2022
  */
 import java.util.ArrayList;
 public class Logica {
@@ -23,6 +23,7 @@ public Logica(){
     this.lines= new ArrayList<String>();
 }
 /**
+ * Metodo addCommand
  * Se añade una instruccion a los arraylist
  * @param commands
  */
@@ -30,6 +31,7 @@ public void addCommand(String commands){
     this.lines.add(commands);
 }
 /**
+ * Metodo getLines
  * Se obtienen las lineas al arraylist
  * @return lines
  */
@@ -37,6 +39,7 @@ public ArrayList<String> getLines(){
     return this.lines;
 }
 /**
+ * Metodo generadorString
  * String para almacenamiento de todas las lineas
  * @param logica
  */

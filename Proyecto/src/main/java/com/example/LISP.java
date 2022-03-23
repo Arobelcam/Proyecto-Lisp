@@ -1,5 +1,14 @@
 package com.example;
-
+/**
+ * LISP
+ * Objetivo: Es la clase que se encarga de la mayor parte programatica del interprete, unifica todos los elementos de java collections utilizados
+ * 
+ * @author Aaron Beltran
+ * @author Paulo Sánchez
+ * @author Luis Montenegro
+ * @author Roberto Rios
+ * @version 1.0 finalizado 20/03/2022
+ */
 import com.example.models.Logica;
 import com.example.models.StackVector;
 import java.util.ArrayList;
@@ -119,6 +128,7 @@ public class LISP {
      * @return se regresa el resultado de la operacion.
      */
     private Object reconocer(Object pr) {
+        // Se realizan las distintas condiciones que permiten reconocer los elementos del vector para la lectura de datos
         if (pr instanceof StackVector) {
             StackVector programa = (StackVector) pr;
             if (programa.size() > 0) {
