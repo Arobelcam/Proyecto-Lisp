@@ -4,15 +4,15 @@
 ; Comentario despues de linea de codigo
 
 ;Operaciones Aritmeticas
-(print (+ 5 4))
+(print (+ 9 4))
 (print (- 5 4))
-(print (* 5 4))
-(print (/ 10 5))
+(print (* 3 7))
+(print (/ 30 5))
 
 ;Definicion de funciones
-(defun hello-you (name apellido)
-    ;(format t "Hello ~a! ~%" name)
-    (print name apellido)
+(defun Saludo (nombre apellido)
+    ;(format t "Hola ~a! ~%" hombre)
+    (print nombre apellido)
 )
 
 ;Predicados ATOM, LIST, EQUAL, <, >
@@ -27,8 +27,8 @@
 
 ;Condiciones
 (print
-    (COND ((< 6 5) "suspenso")
-          ((< 6 7) "aprobado")
+    (COND ((< 6 5) "Condicion rechazada")
+          ((< 6 7) "Condicion aprobada")
     )
 )
 
@@ -44,10 +44,9 @@
 
 ;Llamada de funcion y otras
 (print "Como te llamas? ")
-(Hola como estas )
+(Saludo Nuevo Usuario )
 
 ;(format t "Hola Mundo")
-;(defvar name "Willi")
 ;(defvar num 0)
 ;(setf num 6)
 ;(print num)

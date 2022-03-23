@@ -2,7 +2,7 @@
 (defun sum(a b)
     (+ a b)
 ) 
-;(print (sum 10 8))
+(print (sum 10 8))
 
 
 ; Conversion de fahrenheit a celsius

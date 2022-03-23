@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Toda la logica para interpretar un lisp
+ * Toda la logica para interpretar las expresiones de lisp.
  */
 public class LISP {
 
@@ -15,15 +15,16 @@ public class LISP {
     private HashMap<String, StackVector> funciones = new HashMap<>();
 
     /**
-     * Constructor
-     * @param programaLeido programa ingresado
+     * Constructor de clase LISP
+     * @param lecprograma programa ingresado
      */
-    LISP(Logica programaLeido) {
-        this.programaprueba = programaLeido;
+    LISP(Logica lecprograma) {
+        this.programaprueba = lecprograma;
         interpretar();
     }
 
     /**
+     * Metodo interpretar
      * Ejecuta el archivo leido, elimina los comentarios, luego lo lee y por ultimo utiliza la recursividad
      */
     private void interpretar() {
@@ -31,17 +32,18 @@ public class LISP {
     }
 
     /**
-     * Limpia el programa leido, es decir, elimina los comentarios
-     * @return
+     * Metodo limpairPrograma
+     * Limpia el programa ingresadonque ha sido pasado por la lectura de archivos y se  eliminan los comentarios incluidos
+     * @return La lectura del archivo de lisp
      */
     private StackVector<Object> limpiarPrograma() {
         StackVector<Object> stack = new StackVector<>();
         Logica log = new Logica();
-        String programaClean;
+        String programalimp;
 
         log.addCommand("(");
         for (String linea : this.programaprueba.getLines()) {
-            //Se borran los comentarios
+            //Se eliminan los comnetarios que se incluyen en el archivo de lisp
             if (linea.length() >= 1 && linea.charAt(0) != ';') {
                 String nuevalinea = "";
                 for (int i = 0; i < linea.length(); i++) {
@@ -57,10 +59,10 @@ public class LISP {
         }
         log.addCommand(")");
 
-        //Linea de codigo que coloca un espacion entre parentesis para no tomarlo como una palabra
-        programaClean = log.generadorString().replaceAll("\\("," ( ").replaceAll("\\)", " ) ");
+        //se encarga de separar los parentesis incluidos en la declaracion de lisp
+        programalimp = log.generadorString().replaceAll("\\("," ( ").replaceAll("\\)", " ) ");
 
-        for (String linea : programaClean.trim().split("\\s+")) {
+        for (String linea : programalimp.trim().split("\\s+")) {
             stack.push(linea);
         }
 
@@ -68,17 +70,21 @@ public class LISP {
     }
 
     /**
-     * Lee el archivo .lisp linea por linea
+     * Metodo leer programa
+     * @param programa
+     *  Se encarga de realizar la lectura del archivo de lisp linea por linea
      */
     private Object leerPrograma(StackVector<Object> programa) {
         if (programa.empty()) {
             throw new IllegalArgumentException("Unexpected EOF while reading");
         }
+
+        // se se retira el objeto del vector
         Object sec = programa.getVector().remove(0);
 
         if (sec.equals("(")) {
             StackVector<Object> inst = new StackVector<>(programa.size() - 1);
-
+        
             while (!programa.getVector().get(0).equals(")")) {
                 inst.push(leerPrograma(programa));
             }
@@ -90,8 +96,9 @@ public class LISP {
     }
 
     /**
-     * Permite la recusividad
-     * @param pr objeto stackvector creado
+     * Metodo ejecutar
+     * Se permite la realizacion de la recursividad en el programa
+     * @param pr se crea el objeto del vector
      */
     private void ejecutar(Object pr) {
         if (pr instanceof StackVector) {
@@ -106,9 +113,10 @@ public class LISP {
     }
 
     /**
-     * Reconoce la operacion que se debe realizar al leerla en el programa lisp
-     * @param pr objeto stackvector
-     * @return el resultado de la operacion o instruccion encontrada
+     * Metodo reconocer
+     * Se encarga de reconocer la operaxion a realizar por el interprete mediante la lectura de datos
+     * @param pr se crea el objeto para stackvector
+     * @return se regresa el resultado de la operacion.
      */
     private Object reconocer(Object pr) {
         if (pr instanceof StackVector) {
@@ -253,9 +261,10 @@ public class LISP {
     }
 
     /**
-     * Retorna el valor segun su tipo si en dado caso el tipo que esta declarado no es el correcto
+     * Metodo StringA_Tipo
+     * Se encarga de retornar el tipo de dato en caso de que el tipo que se haya introducido no sea el correcto
      * @param dato valor ingresado
-     * @return dato cambiado
+     * @return el tipo de dato cambiado
      */
     private Object stringA_Tipo(String dato) {
         try {
@@ -269,6 +278,12 @@ public class LISP {
         }
     }
 
+    /**
+     * Metodo ejecutrarFuncion
+     * Se encarga de retornar el nuevo vector que permitira ejecutar las funciones de lisp 
+     * @param fun funcion de lisp a ejecutar
+     * @return la funcion ejecutada 
+     */
     private Object ejecutarFuncion(Object fun) {
         StackVector funNuevo = new StackVector();
         if (fun instanceof StackVector) {
@@ -287,6 +302,7 @@ public class LISP {
     }
 
     /**
+     * Metodo isAtom
      * Realiza la funcion atom mostrando true o nil (false) segun la sintaxis de lisp
      * @param algo valor ingresado
      * @return el estado, si no es un string o integer es false
@@ -302,6 +318,7 @@ public class LISP {
     }
 
     /**
+     * Metodo esIgual
      * Para las funciones EQUAL y EQ, si los objetos son iguales es true, de lo contrario nil (false)
      * @param e1 objeto 1
      * @param e2 objeto 2
@@ -316,6 +333,7 @@ public class LISP {
     }
 
     /**
+     * Metodo comparar
      * Valida el tag
      * @param comp string
      * @param e1 int 1
@@ -333,6 +351,7 @@ public class LISP {
     }
 
     /**
+     * Metodo cambiarParametros
      * Realiza toda la logica de Defun en donde se cambia el valor del parametro por lo ingresado segun el lisp
      * @param parametros reconocido en lisp (nombre de la variable)
      * @param ingresados lo que desea el usuario
@@ -375,7 +394,8 @@ public class LISP {
     }
 
     /**
-     * Pasa el vector a un String para poder ser impreso
+     * Metodo VectorToString
+     * Pasa el vector a una secuencia de caraceres, para que este posteriormentse pueda mostrar en pantalla
      * @param pr objeto
      */
     private void vectorToString(Object pr) {
