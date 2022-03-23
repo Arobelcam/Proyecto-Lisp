@@ -13,6 +13,18 @@ class AppTest {
      */
     @Test
     void testApp() {
-        assertEquals(1, 1);
+        
     }
+
+    @Test
+    void stackIntTest() {
+        
+    }
+
+    @Test
+    void stackVectorTest() {
+        ;
+    }
+
+    
 }
